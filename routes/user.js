@@ -8,6 +8,7 @@ const {
     logout,
     updateUserDetails,
     updateProfilePic,
+    getOneUser
     //allUsers
 } = require('../controllers/userController')
 
@@ -16,6 +17,7 @@ const {
 router.route('/signup').post(signup)
 router.route('/signin').post(signin)
 router.route('/logout').get(isLoggedIn,logout)
+router.route('/getoneuser/:id').get(getOneUser)
 router.route('/userdashboard/update').post(isLoggedIn,updateUserDetails)
 router.route('/userdashboard/updateprofile').post(isLoggedIn,updateProfilePic)
 //router.route('/getallusers').get(isLoggedIn,allUsers)
