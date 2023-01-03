@@ -3,33 +3,19 @@ const Favourite = require('../models/Favourite')
 const asyncHandler = require('express-async-handler')
 
 const addFavourite = asyncHandler(async(req, res)=>{
-    const property = await Property.findById(req.params.id)
-
-    if(!property){
+    const isProperty = await Property.findById(req.params.id)
+    if (!isProperty) {
         res.status(400)
-        throw new Error('the property doesnot exists')
-    
-    }
-
-    const favourite = new Favourite({
-        Action: property.Action,
-        PropertyType: property.PropertyType,
-        SelectCategory: property.SelectCategory,
-        Photos: property.Photos,
-        Price: property.Price,
-        Location: property.Location,
-        Address: property.Address,
-        Description: property.Description,
-        User: property.User,
-        createdAt: property.createdAt 
-    })
-
-    const result = await favourite.save()
-    res.status(200).json({
-        success: true,
-        result
-    })
-})
+        throw new Error('no property found')
+    }else{
+        const favourite = new Favourite({
+            User: req.user._id,
+            isProperty
+        })
+        
+    const createFavourite = await favourite.save()
+    res.status(200).json(createFavourite)
+}})
 
 const deleteFavourite = asyncHandler(async(req, res)=>{
     const favourite = await Favourite.findById(req.params.id)
@@ -50,19 +36,13 @@ const deleteFavourite = asyncHandler(async(req, res)=>{
 })
 
 const getAllFavourites = asyncHandler(async(req, res)=>{
-    const favourite = await Favourite.find()
+    const favourite = await Favourite.find({User: req.user._id})
     if (!favourite) {
         res.status(400)
         throw new Error('no favourites by the user')
-    
     }
-    res.status(200).json({
-        success: true,
-        favourite
-    })
- 
+    res.status(200).json(favourite)
 })
-
 
 module.exports = {
     addFavourite,
