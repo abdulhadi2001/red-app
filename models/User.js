@@ -32,9 +32,10 @@ const userSchema= new mongoose.Schema({
         type:String,
         default:'https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg'
     },
-},
-{
-    timestamps: true
+    createdAt: {
+        type: Date,
+        default: Date.now
+    }
 })
 
 //encryption of password before saving 

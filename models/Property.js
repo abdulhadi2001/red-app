@@ -37,11 +37,11 @@ const propertySellSchema = new mongoose.Schema({
         {
             id:{
                 type: String,
-                //required: true
+                required: true
             },
             secure_url:{
                 type: String,
-                //required: true
+                required: true
             }
         },
     ],
@@ -63,12 +63,14 @@ const propertySellSchema = new mongoose.Schema({
         required: [true, 'please provide a description of the property']
     },
     User:{
-        type: mongoose.Schema.Types.ObjectId,
+        type: mongoose.Schema.ObjectId,
         ref: 'User',
         required: true
     },
-},{
-    timestamps: true
+    createdAt:{
+        type: Date,
+        default:Date.now()
+    }
 })
 
 module.exports = mongoose.model('Property',propertySellSchema)
