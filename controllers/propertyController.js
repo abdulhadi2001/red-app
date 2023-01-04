@@ -5,7 +5,8 @@ const cloudinary = require('cloudinary')
 
 const sellProperty = asyncHandler(async(req, res)=>{
     //images
-    let imageArray=[]
+    let imageArray=[];
+    let User = "";
 
     if(!req.files){
         res.status(400)
@@ -28,7 +29,8 @@ const sellProperty = asyncHandler(async(req, res)=>{
     }
 
     req.body.Photos = imageArray
-    User = req.user.id
+    //req.body.User = User._id
+    User = req.body.User
 
     const property = await Property.create(req.body)
     res.status(200).json({
