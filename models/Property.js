@@ -63,7 +63,7 @@ const propertySellSchema = new mongoose.Schema({
         required: [true, 'please provide a description of the property']
     },
     User:{
-        type: mongoose.Schema.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
         
     },
