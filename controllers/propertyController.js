@@ -1,12 +1,13 @@
 const Property = require('../models/Property')
 const asyncHandler = require('express-async-handler')
 const cloudinary = require('cloudinary')
+const User = require('../models/User')
 
 
 const sellProperty = asyncHandler(async(req, res)=>{
     //images
-    let imageArray=[]
-    let User= ''
+    let imageArray=[];
+    let User = "";
 
     if(!req.files){
         res.status(400)
@@ -29,6 +30,7 @@ const sellProperty = asyncHandler(async(req, res)=>{
     }
 
     req.body.Photos = imageArray
+    //req.body.User = User._id
     User = req.body.User
 
     const property = await Property.create(req.body)
