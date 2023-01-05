@@ -131,7 +131,7 @@ const updateProfilePic = asyncHandler(async(req, res)=>{
     })
 })
 
-const getOneUser = asyncHandler(async(req, res)=>{
+const getOneUser = asyncHandler(async(req, res, next)=>{
     const user = await User.findById(req.params.id)
 
     if (!user) {
