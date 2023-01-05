@@ -1,6 +1,7 @@
 const Property = require('../models/Property')
 const asyncHandler = require('express-async-handler')
 const cloudinary = require('cloudinary')
+const User = require('../models/User')
 
 
 const sellProperty = asyncHandler(async(req, res)=>{
