@@ -67,9 +67,10 @@ const propertySellSchema = new mongoose.Schema({
         ref: 'User',
         
     },
-},
-{
-    timestamps: true
+    createdAt:{
+        type: Date,
+        default:Date.now()
+    }
 })
 
 module.exports = mongoose.model('Property',propertySellSchema)

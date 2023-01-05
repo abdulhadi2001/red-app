@@ -11,9 +11,10 @@ const favouriteSchema = new mongoose.Schema({
         ref: 'User',
         required: true
     },
-},
-{
-    timestamps: true
+    createdAt:{
+        type: Date,
+        default:Date.now()
+    }
 })
 
 module.exports = mongoose.model('Favourite',favouriteSchema)
